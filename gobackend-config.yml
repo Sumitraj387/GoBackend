@@ -1,0 +1,12 @@
+http:
+  address: "127.0.0.1:8080"
+db:
+  host: "localhost"
+  port: 5432
+  user: "postgres"
+  password: "postgres"
+  name: "postgres"
+  timeout: 5
+  maxIdleConn: 10
+  maxOpenConn: 10
+  searchPath: ""
