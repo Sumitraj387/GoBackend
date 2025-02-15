@@ -35,7 +35,4 @@ func main() {
 	if err := http.ListenAndServe("127.0.0.1:8080", muxHttpHandler); err != nil {
 		panic(err)
 	}
-	// openAiClient := openAi.NewClient(config.OpenAiConfig.SecretKey)
-	// openAiClient.CreateChatCompletion()
-
 }

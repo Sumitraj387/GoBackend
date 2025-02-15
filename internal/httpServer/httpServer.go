@@ -22,7 +22,6 @@ func (h HttpServer) Init() error {
 }
 func (h HttpServer) registerRoutes() {
 	h.Router.HandleFunc("/ping", h.Ping()).Methods("GET")
-	//h.Router.HandleFunc("/chat", h.Chat()).Methods("POST")
 }
 func (h HttpServer) Ping() func(rw http.ResponseWriter, rq *http.Request) {
 	return func(rw http.ResponseWriter, rq *http.Request) {
