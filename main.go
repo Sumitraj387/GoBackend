@@ -17,6 +17,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	logger := logrus.New().WithFields(logrus.Fields{
 		"hostname": "chatbot",
 	})
