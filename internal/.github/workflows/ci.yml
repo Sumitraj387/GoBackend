@@ -1,0 +1,32 @@
+name: Deploy GoBackend
+
+on:
+  push:
+    branches:
+      - dev
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+      - name: Create .env file
+        run: echo "PORT=${{ secrets.PORT }}" >> .env
+      - name: Login to docker hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build docker image
+        run: docker build -t sumitraj387387387/gobackend:latest .
+      - name: Push image to docker hub
+        run: docker push sumitraj387387387/gobackend:latest
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull docker image
+        run: docker pull sumitraj387387387/gobackend:latest
+      - name: Delete old container
+        run: docker rm -f gobackend-container  
+      - name: Run docker container          
+        run: docker run -d -p 8080:8080 --name go-app-container sumitraj387387387/gobackend
