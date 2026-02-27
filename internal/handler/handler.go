@@ -21,9 +21,9 @@ func (h HandlerV1) Init() {
 	httpServerV1 := httpserver.HttpServer{
 		Router: h.Router,
 		Logger: h.Logger,
-		Core: coreV1.Core{
+		Core: &coreV1.Core{
 			Logger: h.Logger,
-			RepoV1: repoV1.Repository{
+			RepoV1: &repoV1.Repository{
 				Db:     h.Db,
 				Logger: h.Logger,
 			},
